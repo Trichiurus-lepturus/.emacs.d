@@ -47,19 +47,19 @@
    'remote-direct-async-process))
 
 (use-package tramp-hlo
-  :ensure t
   :after tramp
   :config
   (tramp-hlo-setup))
 
 (use-package dired
+  :ensure nil
   :config
   (setq dired-listing-switches
         "-l --almost-all --human-readable \
 --group-directories-first --no-group"))
 
 (use-package dirvish
-  :ensure t
+  :defer t
   :init
   (dirvish-override-dired-mode)
   :config
