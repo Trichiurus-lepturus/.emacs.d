@@ -46,6 +46,10 @@
       (add-hook 'after-make-frame-functions #'sztk-setup-fonts)
     (sztk-setup-fonts)))
 
+(use-package nerd-icons
+  :custom
+  (nerd-icons-font-family "Symbols Nerd Font Mono"))
+
 (use-package doom-themes
   :custom
   (doom-themes-enable-bold t)

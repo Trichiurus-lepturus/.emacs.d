@@ -38,13 +38,77 @@
         (concat
          "-o ControlPath=~/.ssh/tramp-%%r@%%h:%%p "
          "-o ControlMaster=auto -o ControlPersist=10m"))
-  (setq enable-remote-dir-locals t))
+  (setq enable-remote-dir-locals t)
+  (connection-local-set-profile-variables
+   'remote-direct-async-process
+   '((tramp-direct-async-process . t)))
+  (connection-local-set-profiles
+   '(:application tramp :protocol "ssh")
+   'remote-direct-async-process))
 
 (use-package tramp-hlo
   :ensure t
   :after tramp
   :config
   (tramp-hlo-setup))
+
+(use-package dired
+  :config
+  (setq dired-listing-switches
+        "-l --almost-all --human-readable \
+--group-directories-first --no-group"))
+
+(use-package dirvish
+  :ensure t
+  :init
+  (dirvish-override-dired-mode)
+  :config
+  (setq delete-by-moving-to-trash t)
+  (setq dirvish-mode-line-format
+        '(:left (sort symlink) :right (omit yank index)))
+  (setq dirvish-attributes
+        '(vc-state subtree-state nerd-icons collapse
+                   git-msg file-time file-size)
+        dirvish-side-attributes
+        '(vc-state nerd-icons collapse file-size))
+  (setq dirvish-large-directory-threshold 16384)
+  (setq dirvish-default-layout nil)
+  (setq dirvish-preview-dispatchers '())
+  (setq dirvish-subtree-state-style 'nerd)
+  (setq dirvish-path-separators
+        (list
+         (format "  %s " (nerd-icons-codicon "nf-cod-home"))
+         (format "  %s " (nerd-icons-codicon "nf-cod-root_folder"))
+         (format " %s " (nerd-icons-faicon "nf-fa-angle_right"))))
+  (setq mouse-1-click-follows-link nil)
+  (define-key dirvish-mode-map (kbd "<mouse-1>")
+              'dirvish-subtree-toggle-or-open)
+  (define-key dirvish-mode-map (kbd "<mouse-3>")
+              'dired-mouse-find-file-other-window)
+  (define-key dirvish-mode-map (kbd "<double-mouse-1>")
+              'dired-mouse-find-file)
+  :bind
+  (("C-x d" . dirvish-dwim)
+   ("C-c f" . dirvish-fd)
+   :map dirvish-mode-map
+   (";"   . dired-up-directory)
+   ("h"   . dirvish-dispatch)
+   ("a"   . dirvish-setup-menu)
+   ("f"   . dirvish-file-info-menu)
+   ("o"   . dirvish-quick-access)
+   ("s"   . dirvish-quicksort)
+   ("r"   . dirvish-history-jump)
+   ("l"   . dirvish-ls-switches-menu)
+   ("v"   . dirvish-vc-menu)
+   ("*"   . dirvish-mark-menu)
+   ("y"   . dirvish-yank-menu)
+   ("N"   . dirvish-narrow)
+   ("^"   . dirvish-history-last)
+   ("TAB" . dirvish-subtree-toggle)
+   ("M-f" . dirvish-history-go-forward)
+   ("M-b" . dirvish-history-go-backward)
+   ("M-e" . dirvish-emerge-menu)
+   ("M-t" . dirvish-layout-toggle)))
 
 (provide 'init-project)
 
