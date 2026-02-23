@@ -28,7 +28,7 @@
         ("C-SPC" . corfu-insert-separator)
         ("C-@" . corfu-insert-separator))
   :init
-  (global-corfu-mode 1)
+  (global-corfu-mode 1))
 
 (use-package orderless
   :custom
