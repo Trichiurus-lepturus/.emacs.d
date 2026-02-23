@@ -1,6 +1,14 @@
 ;;; lisp/init-completion.el --- Completion -*- lexical-binding: t; -*-
 
 (electric-pair-mode 1)
+(context-menu-mode 1)
+(setq tab-always-indent 'complete
+      text-mode-ispell-word-completion nil
+      enable-recursive-minibuffers t
+      minibuffer-prompt-properties
+      '(read-only t cursor-intangible t face minibuffer-prompt)
+      read-extended-command-predicate
+      #'command-completion-default-include-p)
 
 (use-package vertico
   :init
@@ -15,14 +23,19 @@
   (corfu-quit-at-boundary 'separator)
   (corfu-quit-no-match t)
   (corfu-preview-current nil)
+  :bind
+  (:map corfu-map
+        ("C-SPC" . corfu-insert-separator)
+        ("C-@" . corfu-insert-separator))
   :init
-  (global-corfu-mode 1))
+  (global-corfu-mode 1)
 
 (use-package orderless
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides
-   '((file (styles basic partial-completion)))))
+   '((file (styles partial-completion))))
+  (completion-category-defaults nil))
 
 (provide 'init-completion)
 
