@@ -3,6 +3,9 @@
 (require 'cl-lib)
 (require 'init-const)
 
+(use-package vterm
+  :defer t)
+
 (defun sztk-path-msys2-to-windows (path)
   (let ((p (expand-file-name path)))
     (if (executable-find "cygpath")
@@ -28,7 +31,7 @@
                                   :command (cons exe args)
                                   :connection-type 'pipe
                                   :noquery t)))
-      (shell))))
+      (vterm))))
 
 (defun sztk-terminal-open-here ()
   (interactive)
