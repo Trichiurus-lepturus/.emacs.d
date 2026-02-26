@@ -1,5 +1,7 @@
 ;;; init-user-interface.el --- UI -*- lexical-binding: t; -*-
 
+(require 'cl-lib)
+
 (setq-default indent-tabs-mode nil
               fill-column 76
               require-final-newline t)
@@ -51,15 +53,14 @@
   (nerd-icons-font-family "Symbols Nerd Font Mono"))
 
 (defun sztk-adv-preserve-background (orig-fun theme &rest args)
-  (let ((graphic-frame-p (and (display-graphic-p)
-                              (frame-live-p (selected-frame)))))
-    (when-let* ((_ graphic-frame-p)
-                (bg (face-background 'default)))
-      (set-face-background 'default bg))
+  (cl-flet ((anchor-background ()
+              (when-let* ((_ (and (display-graphic-p)
+                                  (frame-live-p (selected-frame))))
+                          (bg (face-background 'default)))
+                (set-face-background 'default bg))))
+    (anchor-background)
     (apply orig-fun theme args)
-    (when-let* ((_ graphic-frame-p)
-                (bg (face-background 'default)))
-      (set-face-background 'default bg))))
+    (anchor-background)))
 (advice-add 'load-theme :around #'sztk-adv-preserve-background)
 
 (use-package doom-themes
