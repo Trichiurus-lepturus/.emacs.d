@@ -88,8 +88,9 @@
   (define-key dirvish-mode-map (kbd "<double-mouse-1>")
               'dired-mouse-find-file)
   :bind
-  (("C-x d" . dirvish-dwim)
-   ("C-c f" . dirvish-fd)
+  (("C-c d d" . dirvish-dwim)
+   ("C-c d s" . dirvish-side)
+   ("C-c d f" . dirvish-fd)
    :map dirvish-mode-map
    (";"   . dired-up-directory)
    ("h"   . dirvish-dispatch)
