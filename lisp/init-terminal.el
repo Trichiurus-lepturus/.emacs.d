@@ -28,23 +28,22 @@
             (expand (dir)
               (let ((dir (expand-file-name dir)))
                 (if windows-p (sztk-path-msys2-to-windows dir) dir))))
-    (let ((exterminal
-           (and (external-p directory)
-                (cond
-                 ((konsole-p)
-                  `("konsole" "--new-tab" "--workdir" ,(expand directory)))
-                 ((wt-p)
-                  `("cmd.exe" "/c" "start" "" "wt.exe"
-                    ,@(when (wt-nt-p) '("-w" "0" "nt"))
-                    "-d" ,(expand directory) "-p" "MSYS2-UCRT64"))
-                 (t nil)))))
-      (if exterminal
-          (make-process :name (car exterminal)
-                        :buffer nil
-                        :command exterminal
-                        :connection-type 'pipe
-                        :noquery t)
-        (vterm)))))
+    (if-let ((exterminal
+              (and (external-p directory)
+                   (cond
+                    ((konsole-p)
+                     `("konsole" "--new-tab" "--workdir" ,(expand directory)))
+                    ((wt-p)
+                     `("cmd.exe" "/c" "start" "" "wt.exe"
+                       ,@(when (wt-nt-p) '("-w" "0" "nt"))
+                       "-d" ,(expand directory) "-p" "MSYS2-UCRT64"))
+                    (t nil)))))
+        (make-process :name (car exterminal)
+                      :buffer nil
+                      :command exterminal
+                      :connection-type 'pipe
+                      :noquery t)
+      (vterm))))
 
 (defun sztk-terminal-open-here ()
   (interactive)
