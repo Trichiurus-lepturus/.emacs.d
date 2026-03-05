@@ -10,7 +10,10 @@
   :config
   (setq TeX-auto-save t
         TeX-parse-self t
-        TeX-master nil)
+        TeX-master nil
+        TeX-check-TeX nil
+        TeX-show-compilation t)
+  (setq-default TeX-engine 'xetex)
   (add-hook 'TeX-mode-hook #'(lambda () (setq fill-column 78))))
 
 (use-package markdown-mode
