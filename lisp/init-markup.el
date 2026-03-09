@@ -36,7 +36,7 @@
   (markdown-toc-header-toc-end "<!-- toc-end -->")
   (markdown-toc-preset 'pandoc))
 
-(use-package org-mode
+(use-package org
   :ensure nil
   :custom
   (org-link-descriptive nil))
