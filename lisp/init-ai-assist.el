@@ -3,14 +3,11 @@
 (defun sztk-gptel-get-key ()
   (when-let ((match (auth-source-search
                      :host "openrouter.ai"
-                     :user "apikey"
-                     :require '(:secret))))
+                     :user "apikey")))
     (let ((secret (plist-get (car match) :secret)))
       (if (functionp secret) (funcall secret) secret))))
 (use-package gptel
   :defer t
-  :bind (:map gptel-mode-map
-              ("C-c C-c C-c" . gptel-abort))
   :config
   (setq gptel-default-mode 'org-mode
         gptel-model 'deepseek/deepseek-v3.2
