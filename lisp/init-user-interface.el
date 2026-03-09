@@ -42,7 +42,9 @@
         (set-fontset-font t 'kana (font-spec :family "Noto Sans CJK JP"))
         (set-fontset-font t 'hangul (font-spec :family "Noto Sans CJK KR"))
         (set-fontset-font t 'bopomofo
-                          (font-spec :family "Noto Sans CJK TC")))))
+                          (font-spec :family "Noto Sans CJK TC"))
+        (set-fontset-font t 'cjk-misc
+                          (font-spec :family "Noto Sans CJK SC")))))
   :config
   (if (daemonp)
       (add-hook 'after-make-frame-functions #'sztk-setup-fonts)
