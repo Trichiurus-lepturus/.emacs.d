@@ -38,6 +38,21 @@
 
 (use-package org
   :ensure nil
+  :defer t
+  :preface
+  (defvar sztk-org-table-font "Sarasa Mono SC")
+  (defun sztk-org-table-align-fix-advice (orig-fun &rest args)
+    (let ((m-buf (get-buffer-create " *Org string width*")))
+      (with-current-buffer m-buf
+        (setq-local face-remapping-alist
+                    `((org-table :family ,sztk-org-table-font)))))
+    (apply orig-fun args))
+  :init
+  (advice-add 'org-string-width :around #'sztk-org-table-align-fix-advice)
+  :hook
+  (org-mode . (lambda ()
+                (face-remap-add-relative 'org-table
+                                         :family sztk-org-table-font)))
   :custom
   (org-link-descriptive nil))
 
