@@ -35,16 +35,20 @@
   :preface
   (defun sztk-setup-fonts (&optional frame)
     (with-selected-frame (or frame (selected-frame))
-      (when (display-graphic-p frame)
-        (set-face-attribute 'default nil :family "Fira Mono" :height 120)
-        (set-face-attribute 'fixed-pitch nil :family "Fira Mono")
-        (set-fontset-font t 'han (font-spec :family "Noto Sans CJK SC"))
-        (set-fontset-font t 'kana (font-spec :family "Noto Sans CJK JP"))
-        (set-fontset-font t 'hangul (font-spec :family "Noto Sans CJK KR"))
-        (set-fontset-font t 'bopomofo
-                          (font-spec :family "Noto Sans CJK TC"))
-        (set-fontset-font t 'cjk-misc
-                          (font-spec :family "Noto Sans CJK SC")))))
+      (when (display-graphic-p)
+        (set-face-attribute 'default nil
+                            :family "Fira Mono" :height 120)
+        (set-face-attribute 'fixed-pitch nil
+                            :family "Fira Mono" :inherit 'default)
+        (set-face-attribute 'fixed-pitch-serif nil
+                            :family "Sarasa Mono SC" :inherit 'default)
+        (dolist (pair '((han . "Noto Sans CJK SC")
+                        (kana . "Noto Sans CJK JP")
+                        (hangul . "Noto Sans CJK KR")
+                        (bopomofo . "Noto Sans CJK TC")
+                        (cjk-misc . "Noto Sans CJK SC")))
+          (set-fontset-font (frame-parameter nil 'font) (car pair)
+                            (font-spec :family (cdr pair)))))))
   :config
   (if (daemonp)
       (add-hook 'after-make-frame-functions #'sztk-setup-fonts)
