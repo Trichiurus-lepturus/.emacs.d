@@ -45,16 +45,13 @@
     (let ((m-buf (get-buffer-create " *Org string width*")))
       (with-current-buffer m-buf
         (setq-local face-remapping-alist
-                    `((org-table :family ,sztk-org-table-font
-                                 :height 1.0)))))
+                    `((org-table :family ,sztk-org-table-font)))))
     (apply orig-fun args))
   :init
   (advice-add 'org-string-width :around #'sztk-org-table-align-fix-advice)
   :hook
-  (org-mode . (lambda ()
-                (face-remap-add-relative 'org-table
-                                         :family sztk-org-table-font
-                                         :height 1.0)))
+  (org-mode . (lambda () (face-remap-add-relative
+                          'org-table :family sztk-org-table-font)))
   :custom
   (org-link-descriptive nil))
 
