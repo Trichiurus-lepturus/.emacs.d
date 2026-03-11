@@ -40,15 +40,13 @@
                             :family "Fira Mono" :height 120)
         (set-face-attribute 'fixed-pitch nil
                             :family "Fira Mono" :inherit 'default)
-        (set-face-attribute 'fixed-pitch-serif nil
-                            :family "Sarasa Mono SC" :inherit 'default)
-        (dolist (pair '((han . "Noto Sans CJK SC")
-                        (kana . "Noto Sans CJK JP")
-                        (hangul . "Noto Sans CJK KR")
-                        (bopomofo . "Noto Sans CJK TC")
-                        (cjk-misc . "Noto Sans CJK SC")))
-          (set-fontset-font (frame-parameter nil 'font) (car pair)
-                            (font-spec :family (cdr pair)))))))
+        (dolist (pair '((han . "Sarasa Mono SC")
+                        (kana . "Sarasa Mono J")
+                        (hangul . "Sarasa Mono K")
+                        (bopomofo . "Sarasa Mono TC")
+                        (cjk-misc . "Sarasa Mono SC")))
+          (set-fontset-font t (car pair) (font-spec :family (cdr pair)))
+          (add-to-list 'face-font-rescale-alist (cons (cdr pair) 1.0))))))
   :config
   (if (daemonp)
       (add-hook 'after-make-frame-functions #'sztk-setup-fonts)
