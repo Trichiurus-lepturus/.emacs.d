@@ -4,7 +4,15 @@
 (require 'init-const)
 
 (use-package vterm
-  :defer t)
+  :defer t
+  :hook
+  ((vterm-mode . (lambda ()
+                   (setq-local global-hl-line-mode nil)
+                   (global-hl-line-unhighlight)))
+   (vterm-copy-mode . (lambda ()
+                        (if vterm-copy-mode
+                            (hl-line-mode 1)
+                          (hl-line-mode -1))))))
 
 (defun sztk-path-msys2-to-windows (path)
   (let ((p (expand-file-name path)))
