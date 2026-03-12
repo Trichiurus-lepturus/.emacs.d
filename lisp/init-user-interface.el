@@ -133,6 +133,8 @@
   :config
   (setq avy-timeout-seconds 0.2))
 
+(keymap-global-set "C-c m" #'switch-to-minibuffer)
+
 (provide 'init-user-interface)
 
 ;;; lisp/init-user-interface.el ends here
