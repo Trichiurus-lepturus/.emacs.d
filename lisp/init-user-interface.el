@@ -88,7 +88,7 @@
     (load-theme next-theme t)
     (mapc #'disable-theme (cdr custom-enabled-themes))
     (message "Theme: %s" next-theme)))
-(global-set-key (kbd "C-c y") #'sztk-toggle-theme)
+(keymap-global-set "C-c y" #'sztk-toggle-theme)
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
