@@ -43,6 +43,7 @@
 
 (use-package eldoc
   :ensure nil
+  :diminish
   :custom
   (eldoc-echo-area-use-multiline-p nil))
 

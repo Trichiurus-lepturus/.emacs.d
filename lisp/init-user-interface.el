@@ -30,6 +30,9 @@
 (add-hook 'text-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
+(use-package diminish
+  :ensure t)
+
 (use-package faces
   :ensure nil
   :preface
@@ -123,6 +126,7 @@
 
 (use-package which-key
   :ensure nil
+  :diminish
   :init
   (which-key-mode))
 
