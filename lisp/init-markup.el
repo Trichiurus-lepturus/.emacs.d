@@ -49,6 +49,8 @@
     (apply orig-fun args))
   :init
   (advice-add 'org-string-width :around #'sztk-org-table-align-fix-advice)
+  :bind (:map org-mode-map
+              ("C-'" . nil))
   :hook
   (org-mode . (lambda () (face-remap-add-relative
                           'org-table :family sztk-org-table-font)))
