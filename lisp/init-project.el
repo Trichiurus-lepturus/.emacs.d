@@ -87,14 +87,10 @@
   (setq mouse-1-click-follows-link nil)
   (define-key dirvish-mode-map (kbd "<mouse-1>")
               'dirvish-subtree-toggle-or-open)
-  (define-key dirvish-mode-map (kbd "<mouse-3>")
-              'dired-mouse-find-file-other-window)
   (define-key dirvish-mode-map (kbd "<double-mouse-1>")
               'dired-mouse-find-file)
   :bind
-  (("C-c d d" . dirvish-dwim)
-   ("C-c d s" . dirvish-side)
-   ("C-c d f" . dirvish-fd)
+  (("C-c s" . dirvish-side)
    :map dirvish-mode-map
    (";"   . dired-up-directory)
    ("h"   . dirvish-dispatch)
