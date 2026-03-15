@@ -1,5 +1,9 @@
 ;;; lisp/init-navigation.el --- Navigation -*- lexical-binding: t; -*-
 
+(use-package winner
+  :ensure nil
+  :init (winner-mode 1))
+
 (use-package avy
   :bind
   (("C-'" . avy-goto-char-2)

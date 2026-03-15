@@ -8,11 +8,6 @@
 
 (setq default-input-method nil)
 
-(add-hook 'after-init-hook
-          (lambda ()
-            (winner-mode 1)
-            (repeat-mode 1)))
-
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t
@@ -29,6 +24,11 @@
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
+
+(use-package repeat
+  :ensure nil
+  :hook (after-init . repeat-mode)
+  :custom (repeat-exit-timeout 3.0))
 
 (use-package diminish)
 
