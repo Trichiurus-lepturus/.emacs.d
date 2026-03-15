@@ -54,8 +54,8 @@
   :defer t
   :bind
   (:map flymake-mode-map
-        ("M-n" . flymake-goto-next-error)
-        ("M-p" . flymake-goto-prev-error)
+        ("M-g M-n" . flymake-goto-next-error)
+        ("M-g M-p" . flymake-goto-prev-error)
         ("C-c !" . flymake-show-buffer-diagnostics)))
 
 (use-package c-ts-mode
