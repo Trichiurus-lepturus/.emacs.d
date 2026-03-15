@@ -9,6 +9,7 @@
 
 (require 'init-user-interface)
 (require 'init-completion)
+(require 'init-navigation)
 (require 'init-project)
 (require 'init-coding)
 (require 'init-markup)

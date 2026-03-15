@@ -1,4 +1,4 @@
-;;; init-user-interface.el --- UI -*- lexical-binding: t; -*-
+;;; lisp/init-user-interface.el --- UI -*- lexical-binding: t; -*-
 
 (require 'cl-lib)
 
@@ -12,6 +12,8 @@
           (lambda ()
             (winner-mode 1)
             (repeat-mode 1)))
+
+(keymap-global-set "C-c m" #'switch-to-minibuffer)
 
 (setq inhibit-startup-screen t
       inhibit-startup-message t
@@ -129,15 +131,6 @@
   :diminish
   :init
   (which-key-mode))
-
-(use-package avy
-  :bind
-  (("C-'" . avy-goto-char-2)
-   ("M-g f" . avy-goto-line))
-  :config
-  (setq avy-timeout-seconds 0.2))
-
-(keymap-global-set "C-c m" #'switch-to-minibuffer)
 
 (provide 'init-user-interface)
 
