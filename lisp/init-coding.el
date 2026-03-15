@@ -8,6 +8,7 @@
 
 (use-package eglot
   :ensure nil
+  :defer t
   :hook
   ((c-ts-mode
     c++-ts-mode
@@ -43,12 +44,14 @@
 
 (use-package eldoc
   :ensure nil
+  :defer t
   :diminish
   :custom
   (eldoc-echo-area-use-multiline-p nil))
 
 (use-package flymake
   :ensure nil
+  :defer t
   :bind
   (:map flymake-mode-map
         ("M-n" . flymake-goto-next-error)
@@ -77,7 +80,7 @@
      "sbcl")))
 
 (use-package racket-mode
-  :ensure t
+  :defer t
   :hook ((racket-mode . racket-xp-mode)
          (racket-mode . (lambda ()
                           (setq-local tab-always-indent 'complete)))))

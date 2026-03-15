@@ -17,6 +17,7 @@
   (add-hook 'TeX-mode-hook #'(lambda () (setq fill-column 78))))
 
 (use-package markdown-mode
+  :defer t
   :mode ("README\\.md\\'" . gfm-mode)
   :init
   (setq markdown-command

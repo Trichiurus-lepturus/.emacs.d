@@ -6,6 +6,7 @@
                      :user "apikey")))
     (let ((secret (plist-get (car match) :secret)))
       (if (functionp secret) (funcall secret) secret))))
+
 (use-package gptel
   :defer t
   :config

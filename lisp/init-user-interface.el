@@ -32,8 +32,7 @@
 (add-hook 'text-mode-hook #'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-(use-package diminish
-  :ensure t)
+(use-package diminish)
 
 (use-package faces
   :ensure nil
@@ -96,6 +95,7 @@
 (keymap-global-set "C-c y" #'sztk-toggle-theme)
 
 (use-package rainbow-delimiters
+  :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (pixel-scroll-precision-mode 1)
