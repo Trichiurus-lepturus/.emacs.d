@@ -13,8 +13,6 @@
             (winner-mode 1)
             (repeat-mode 1)))
 
-(keymap-global-set "C-c m" #'switch-to-minibuffer)
-
 (setq inhibit-startup-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t
