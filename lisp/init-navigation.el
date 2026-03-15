@@ -46,6 +46,10 @@
    consult-source-recent-file consult-source-project-recent-file
    :preview-key '(:debounce 0.4 any)))
 
+(use-package ibuffer
+  :ensure nil
+  :bind (("C-x C-b" . ibuffer)))
+
 (provide 'init-navigation)
 
 ;;; lisp/init-navigation.el ends here
