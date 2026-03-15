@@ -56,7 +56,13 @@
   (:map flymake-mode-map
         ("M-g M-n" . flymake-goto-next-error)
         ("M-g M-p" . flymake-goto-prev-error)
-        ("C-c !" . flymake-show-buffer-diagnostics)))
+        ("C-c !" . flymake-show-buffer-diagnostics))
+  :config
+  (defvar-keymap flymake-repeat-map
+    :doc "Keymap to repeat flymake error navigation."
+    :repeat t
+    "n" #'flymake-goto-next-error
+    "p" #'flymake-goto-prev-error))
 
 (use-package c-ts-mode
   :ensure nil
