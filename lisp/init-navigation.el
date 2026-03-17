@@ -48,7 +48,15 @@
    consult-bookmark consult-recent-file consult-xref
    consult-source-bookmark consult-source-file-register
    consult-source-recent-file consult-source-project-recent-file
-   :preview-key '(:debounce 0.4 any)))
+   :preview-key '(:debounce 0.4 any))
+  :custom
+  (consult-buffer-sources
+   '(consult-source-buffer
+     consult-source-hidden-buffer
+     consult-source-modified-buffer
+     consult-source-other-buffer
+     consult-source-buffer-register
+     consult-source-file-register)))
 
 (use-package ibuffer
   :ensure nil
