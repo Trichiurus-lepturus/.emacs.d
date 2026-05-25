@@ -5,6 +5,7 @@
 
 /auto-save-list/
 /backups/
+/.cask/
 /eshell/
 /games/
 /org-persist/
