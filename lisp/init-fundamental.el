@@ -27,6 +27,12 @@
       auto-save-interval 1200
       auto-save-timeout 120)
 
+(when (executable-find "gpgconf")
+  (let ((ssh-socket (string-trim (shell-command-to-string
+                                  "gpgconf --list-dirs agent-ssh-socket"))))
+    (unless (string-empty-p ssh-socket)
+      (setenv "SSH_AUTH_SOCK" ssh-socket))))
+
 (use-package epg
   :ensure nil
   :custom
