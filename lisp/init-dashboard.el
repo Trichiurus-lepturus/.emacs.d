@@ -30,9 +30,9 @@
   :config
   (setq dashboard-center-content t
         dashboard-show-shortcuts t
-        dashboard-items '((projects . 6)
-                          (recents  . 6))
-        dashboard-footer-messages '("Esc - Meta - Alt - Ctrl - Shift"))
+        dashboard-items '((projects . 3)
+                          (recents  . 12))
+        dashboard-footer-messages '("Esc - Meta - Alt - Ctrl - Shift")))
 
 (provide 'init-dashboard)
 
