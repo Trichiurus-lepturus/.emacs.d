@@ -35,7 +35,6 @@
                     "--all-scopes-completion"
                     "--background-index"
                     "--clang-tidy"
-                    "--compile-commands-dir=build"
                     "--completion-style=detailed"
                     "--header-insertion=never"
                     "--pch-storage=memory")))
