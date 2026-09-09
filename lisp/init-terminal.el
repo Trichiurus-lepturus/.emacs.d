@@ -12,7 +12,9 @@
    (vterm-copy-mode . (lambda ()
                         (if vterm-copy-mode
                             (hl-line-mode 1)
-                          (hl-line-mode -1))))))
+                          (hl-line-mode -1)))))
+  :custom
+  (vterm-max-scrollback 20000))
 
 (defun sztk-path-msys2-to-windows (path)
   (let ((p (expand-file-name path)))
@@ -22,8 +24,7 @@
       (convert-standard-filename p))))
 
 (defun sztk-terminal--run (directory)
-  (cl-flet ((external-p (dir)
-              (and (display-graphic-p) (not (file-remote-p dir))))
+  (cl-flet ((vterm-p () (commandp #'vterm))
             (konsole-p () (executable-find "konsole"))
             (wt-p () (executable-find "wt.exe"))
             (wt-nt-p ()
@@ -37,7 +38,7 @@
               (let ((dir (expand-file-name dir)))
                 (if windows-p (sztk-path-msys2-to-windows dir) dir))))
     (if-let ((exterminal
-              (and (external-p directory)
+              (and (not (vterm-p))
                    (cond
                     ((konsole-p)
                      `("konsole" "--new-tab" "--workdir" ,(expand directory)))
