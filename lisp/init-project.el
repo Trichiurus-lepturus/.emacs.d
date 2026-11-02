@@ -52,10 +52,10 @@
    '(:application tramp :protocol "ssh")
    'remote-direct-async-process))
 
-(use-package tramp-hlo
-  :after tramp
-  :config
-  (tramp-hlo-setup))
+;; (use-package tramp-hlo
+;;   :after tramp
+;;   :config
+;;   (tramp-hlo-setup))
 
 (use-package dired
   :ensure nil
