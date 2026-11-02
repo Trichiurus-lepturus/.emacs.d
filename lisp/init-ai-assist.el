@@ -8,7 +8,6 @@
       (if (functionp secret) (funcall secret) secret))))
 
 (use-package gptel
-  :defer t
   :config
   (setf (alist-get 'default gptel-directives)
         "You are a large language model living in Emacs \

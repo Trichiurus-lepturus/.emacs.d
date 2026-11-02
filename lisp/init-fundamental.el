@@ -40,6 +40,7 @@
   (epg-gpg-program "gpg"))
 
 (use-package pinentry
+  :demand t
   :config
   (condition-case err
       (pinentry-start)

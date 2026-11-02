@@ -7,7 +7,6 @@
   :init (recentf-mode 1))
 
 (use-package dashboard
-  :defer t
   :init
   (dashboard-setup-startup-hook)
   :config

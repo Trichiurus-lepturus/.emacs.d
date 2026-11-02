@@ -14,16 +14,13 @@
           (magit-project-status "Magit" "m"))))
 
 (use-package envrc
-  :defer t
   :commands (envrc-mode envrc-global-mode))
 
 (use-package magit
-  :defer t
   :bind ("C-x g" . magit-status))
 
 (use-package tramp
   :ensure nil
-  :defer t
   :init
   (setq tramp-persistency-file-name
         (expand-file-name "tramp" user-emacs-directory))
@@ -65,7 +62,6 @@
 --group-directories-first --no-group"))
 
 (use-package dirvish
-  :defer t
   :init
   (dirvish-override-dired-mode)
   :config

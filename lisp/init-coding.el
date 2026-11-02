@@ -14,7 +14,6 @@
 
 (use-package eglot
   :ensure nil
-  :defer t
   :hook
   ((c-ts-mode
     c++-ts-mode
@@ -49,14 +48,12 @@
 
 (use-package eldoc
   :ensure nil
-  :defer t
   :diminish
   :custom
   (eldoc-echo-area-use-multiline-p nil))
 
 (use-package flymake
   :ensure nil
-  :defer t
   :bind
   (:map flymake-mode-map
         ("M-g M-n" . flymake-goto-next-error)
@@ -71,18 +68,15 @@
 
 (use-package c-ts-mode
   :ensure nil
-  :defer t
   :custom
   (c-ts-mode-indent-style 'bsd)
   (c-ts-mode-indent-offset 4))
 
 (use-package cmake-ts-mode
   :ensure nil
-  :defer t
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
 (use-package sly
-  :defer t
   :commands (sly)
   :custom
   (inferior-lisp-program
@@ -91,7 +85,6 @@
      "sbcl")))
 
 (use-package racket-mode
-  :defer t
   :hook ((racket-mode . racket-xp-mode)
          (racket-mode . (lambda ()
                           (setq-local tab-always-indent 'complete)))))
@@ -101,11 +94,9 @@
   :hook (emacs-lisp-mode . flymake-mode))
 
 (use-package python
-  :ensure nil
-  :defer t)
+  :ensure nil)
 
 (use-package flymake-ruff
-  :defer t
   :hook (eglot-managed-mode . flymake-ruff-load)
   :preface
   (defun sztk-flymake-ruff-severity-filter (orig-fun code)

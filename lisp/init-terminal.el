@@ -4,7 +4,6 @@
 (require 'init-const)
 
 (use-package vterm
-  :defer t
   :hook
   ((vterm-mode . (lambda ()
                    (setq-local global-hl-line-mode nil)

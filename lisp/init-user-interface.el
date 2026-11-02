@@ -79,6 +79,7 @@
 (advice-add 'load-theme :around #'sztk-adv-preserve-background)
 
 (use-package doom-themes
+  :demand t
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
@@ -99,7 +100,6 @@
 (keymap-global-set "C-c y" #'sztk-toggle-theme)
 
 (use-package rainbow-delimiters
-  :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 (pixel-scroll-precision-mode 1)
