@@ -1,22 +1,13 @@
-;;; lisp/init-package.el --- Package -*- lexical-binding: t; -*-
+;;; lisp/init-package.el --- Package management via Elpaca -*- lexical-binding: t; -*-
 
-(require 'package)
 (require 'init-const)
+(require 'init-elpaca)
 
 (when windows-p
-  (setq package-gnupghome-dir "~/.emacs.d/elpa/gnupg"))
+  (elpaca-no-symlink-mode))
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-
-(unless package--initialized
-  (package-initialize))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile (require 'use-package))
+(elpaca elpaca-use-package
+  (elpaca-use-package-mode))
 
 (setq use-package-always-ensure t)
 (setq use-package-always-defer t)

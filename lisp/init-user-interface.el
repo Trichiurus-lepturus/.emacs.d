@@ -64,6 +64,7 @@
     (sztk-setup-fonts)))
 
 (use-package nerd-icons
+  :demand t
   :custom
   (nerd-icons-font-family "Symbols Nerd Font Mono"))
 
